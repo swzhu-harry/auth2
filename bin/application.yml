@@ -1,0 +1,25 @@
+github:
+  client:
+    clientId: b4eb2531184e66c726b1
+    clientSecret: 6790afe210cd7866d46d7b34b008d7723dcd00f2
+    access-token-uri: https://github.com/login/oauth/access_token
+    user-authorization-uri: https://github.com/login/oauth/authorize
+    client-authentication-scheme: form
+    token-name: oauth_token
+    authentication-scheme: query
+  resource:
+    user-info-uri=https://api.github.com/user
+# oauth2 自己的授权服务器基本配置支持
+security:
+  oauth2:
+    client:
+      client-id: b4eb2531184e66c726b1
+      client-secret: 6790afe210cd7866d46d7b34b008d7723dcd00f2
+      scope: read,write
+      auto-approve-scopes: '.*'
+      grant-type: password
+  basic:
+    enabled: false
+loggin:
+  level:
+    root: debug
