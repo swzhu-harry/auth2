@@ -22,6 +22,14 @@ public class MainController
         model.addAttribute("model", model);
         return "index";
     }
+    @GetMapping("/user")
+    public String user(Model model) {
+        if(model == null ){
+            return "index";
+        }
+        model.addAttribute("model", model);
+        return "index";
+    }
     @GetMapping("/authIndex")
     @PreAuthorize("hasAuthority('ROLE_USER')")  // 指定角色权限才能操作方法
     public String authIndex(Model model) {

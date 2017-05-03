@@ -23,7 +23,6 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
@@ -32,9 +31,13 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.filter.CompositeFilter;
 
-@Configuration
 //@EnableGlobalMethodSecurity(prePostEnabled = true) //	 启用方法安全设置
-@EnableAuthorizationServer
+//@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+
+//@Configuration
+//@RestController
+//@EnableOAuth2Client
+//@EnableAuthorizationServer
 //@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 {
@@ -100,8 +103,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	    }
 
 	    @Override
-	    @Bean // share AuthenticationManager for web and oauth
+	    @Bean("authenticationManager") // share AuthenticationManager for web and oauth
 	    public AuthenticationManager authenticationManagerBean() throws Exception {
+	    	System.out.println("############################");
 	        return super.authenticationManagerBean();
 	    }
 
@@ -154,6 +158,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	            throws Exception {
 	        // Configure spring security's authenticationManager with custom
 	        // user details service
+	    	auth.inMemoryAuthentication().withUser("admin").password("admin").roles("USER","ADMIN");
 	        auth.userDetailsService(this.userDetailService);
 	    }
 

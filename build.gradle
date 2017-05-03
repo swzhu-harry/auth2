@@ -63,7 +63,7 @@ dependencies {
 		compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
 		 
 		// 添加 Spring Security OAuth2 依赖
-		compile('org.springframework.security.oauth:spring-security-oauth2:2.1.0.RELEASE')
+		compile('org.springframework.security.oauth:spring-security-oauth2')
  
     //该依赖对于编译测试是必须的，默认包含编译产品依赖和编译时依
     testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.5.3.RELEASE') {
@@ -72,5 +72,5 @@ dependencies {
     
     
 	//  添加 Spring Security Test 依赖
-	testCompile('org.springframework.security:spring-security-test:4.2.2.RELEASE')
+	testCompile('org.springframework.security:spring-security-test')
 }
